@@ -12,3 +12,6 @@ The organisms survive on nutrition, of which there are several types. When they 
 
 # So they eat and poo. Anything else?
 They evolve! Using a modified genetic evolutionary algorithm, each child has a chance to change its diet or range of consumption (more evolutions on the way). Which is why after a while the system reaches a balance where there are enough members of every "kind" and they survive on other "kinds'" emissions
+
+# Why is everything public?
+So you can have a quick overview by selecting each object. Normally all the "State" classes would be private (and some backing fields too)
