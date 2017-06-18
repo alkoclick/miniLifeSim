@@ -11,4 +11,4 @@ The small green cubes are nutritional elements. The small moving balls are organ
 The organisms survive on nutrition, of which there are several types. When they have more than a threshold (double their starting life, by default), they produce an offspring. The organisms return nutrients back to the environment in a different form when they have processed it. On the explorer to the left you can see the currently living organisms. Their name also displays what they ingest and what they egest.
 
 # So they eat and poo. Anything else?
-They evolve! Each child has a chance to change its diet or range of consumption (more things on the way). Which is why after a while the system reaches a balance where there are enough members of every "kind" and they survive on other "kinds'" emissions
+They evolve! Using a modified genetic evolutionary algorithm, each child has a chance to change its diet or range of consumption (more evolutions on the way). Which is why after a while the system reaches a balance where there are enough members of every "kind" and they survive on other "kinds'" emissions
