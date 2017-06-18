@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// The environment master. There should only be one in the map
+/// </summary>
 public class Environment : MonoBehaviour
 {
 	[Serializable]
@@ -19,8 +22,6 @@ public class Environment : MonoBehaviour
 		public int nutVariants;
 		[Tooltip ("How many nutrients to spawn initially")]
 		public int nutsToSpawn;
-		[Tooltip ("How many nutrients to spawn per second")]
-		public int nutSpawnRate = 2;
 	}
 
 	public Config config;
@@ -32,10 +33,18 @@ public class Environment : MonoBehaviour
 		SpawnFirstOrganism (config.maxX, config.maxY, config.maxZ);
 	}
 
+	/// <summary>
+	/// Spawns the first organism in a random location within the given ranges.
+	/// </summary>
+	/// <param name="maxX">Max x in world space</param>
+	/// <param name="maxY">Max y in world space</param>
+	/// <param name="maxZ">Max z in world space</param>
 	void SpawnFirstOrganism (int maxX, int maxY, int maxZ)
 	{
+		// Spawn the first organism
 		GameObject adam = Instantiate (config.orgPrefab, new Vector3 (UnityEngine.Random.value * maxX, UnityEngine.Random.value * maxY, UnityEngine.Random.value * maxZ), Quaternion.identity, transform);
 		Eating adamsMouth = adam.GetComponent <Eating> ();
+		// And then feed it a bit, so it will not die immediately
 		for (int i = 0; i < 3; i++) {
 			GameObject newNut = Instantiate (config.nutPrefab);
 			adamsMouth.Ingest (newNut.GetComponent <Nutrient> ());
@@ -43,6 +52,12 @@ public class Environment : MonoBehaviour
 		adam.transform.parent = null;
 	}
 
+	/// <summary>
+	/// Spawns a nutrient in a random location within the given ranges.
+	/// </summary>
+	/// <param name="maxX">Max x in world space</param>
+	/// <param name="maxY">Max y in world space</param>
+	/// <param name="maxZ">Max z in world space</param>
 	void SpawnNutInRange (int maxX, int maxY, int maxZ)
 	{
 		Instantiate (config.nutPrefab, new Vector3 (UnityEngine.Random.value * maxX, UnityEngine.Random.value * maxY, UnityEngine.Random.value * maxZ), Quaternion.identity, transform);

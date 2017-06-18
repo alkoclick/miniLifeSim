@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Make sure the sphere is a trigger!
 [RequireComponent (typeof(SphereCollider))]
 public class Eating : MonoBehaviour , Evolveable
 {
@@ -16,7 +17,7 @@ public class Eating : MonoBehaviour , Evolveable
 		public Organism organism;
 		[Tooltip ("The nutrient type ingested.")]
 		public int ingestType;
-		[Tooltip ("The organism type egested.")]
+		[Tooltip ("The nutrient type egested.")]
 		public int egestType;
 		[Range (0.0f, 1.0f)]
 		[Tooltip ("The chance that an offspring will evolve - change some characteristic compared to parent")]
@@ -40,7 +41,13 @@ public class Eating : MonoBehaviour , Evolveable
 		/// The nutrients currently inside this unit.
 		/// </summary>
 		public Queue<Nutrient> inStomach = new Queue<Nutrient> ();
+		/// <summary>
+		/// The value of the top nutrient in the queue, which decreases as it's being consumed.
+		/// </summary>
 		public float currentNutValue = 0;
+		/// <summary>
+		/// The value of the other nutrients in the queue
+		/// </summary>
 		public float otherNutValue = 0;
 	}
 

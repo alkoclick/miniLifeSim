@@ -4,15 +4,18 @@ using UnityEngine;
 using System;
 
 [RequireComponent (typeof(Movement))]
+[RequireComponent (typeof(Eating))]
 public class Organism : MonoBehaviour
 {
 
 	[Serializable]
 	public class Config
 	{
+		[Tooltip ("The minimum required life for an organism to be born with")]
 		public float startingHealth = 10.0f;
 		[Tooltip ("How much life the organism loses per sec")]
 		public float deathRate = 0.5f;
+		[HideInInspector]
 		public Eating eating;
 	}
 
@@ -31,11 +34,16 @@ public class Organism : MonoBehaviour
 		// Reproduction
 		if (state.currentHP > 2 * config.startingHealth) {
 			Reproduce ();
-		} else if (state.currentHP <= 0) {
+		} // Death
+		else if (state.currentHP <= 0) {
 			Die ();
 		}
 	}
 
+	/// <summary>
+	/// Create an identical child and feed it enough nutrients to have a starting health over the minimum (config.startingHealth).
+	/// The child will then evolve
+	/// </summary>
 	public void Reproduce ()
 	{
 		GameObject child = Instantiate (gameObject, transform.position, transform.rotation);
@@ -49,6 +57,4 @@ public class Organism : MonoBehaviour
 	{
 		Destroy (gameObject);
 	}
-
-	// Evolution happens on childbirth
 }
