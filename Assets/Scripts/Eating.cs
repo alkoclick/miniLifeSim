@@ -9,7 +9,8 @@ public class Eating : MonoBehaviour , Evolveable
 	[System.Serializable]
 	public class Config
 	{
-		[Tooltip ("The maximum range at which nutrients will be consumed. Is enforced on the sphere collider")]
+		[HideInInspector]
+		[Tooltip ("The maximum range at which nutrients will be consumed. Is drawn from the sphere collider")]
 		public float range;
 		[Tooltip ("The trigger collider which ")]
 		public SphereCollider collider;
@@ -29,7 +30,7 @@ public class Eating : MonoBehaviour , Evolveable
 				return false;
 			}
 			this.collider = collider;
-			this.collider.radius = range;
+			this.range = collider.radius;
 			return true;
 		}
 	}

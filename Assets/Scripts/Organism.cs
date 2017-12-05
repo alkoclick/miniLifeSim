@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent (typeof(Movement))]
+[RequireComponent (typeof(MovementChar))]
 [RequireComponent (typeof(Eating))]
 public class Organism : MonoBehaviour
 {
